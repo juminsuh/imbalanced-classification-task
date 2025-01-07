@@ -20,7 +20,7 @@
   "management": "5.11",
   "student": "1.46",
   "nan": "0.00"
-}```
+}
 
 ![image](https://github.com/user-attachments/assets/864eee47-558a-450a-9efb-bfd742f5dfaa)
   
