@@ -18,7 +18,7 @@ Upon visualizing each feature, we identified certain features with highly skewed
   "student": "1.46",
   "nan": "0.00"
 }
-- ![image](https://github.com/user-attachments/assets/864eee47-558a-450a-9efb-bfd742f5dfaa)
+![image](https://github.com/user-attachments/assets/864eee47-558a-450a-9efb-bfd742f5dfaa)
   
 For features like education and housing that did not exhibit significant distribution biases, we used a KNN (K-Nearest Neighbor) imputer to handle NaN values. KNN imputes NaN values based on the k-nearest neighbors in the dataset, a method typically used for numerical variables. However, we extended its application to categorical data. To use the KNN imputer, the data needed to be converted into numerical types. We encoded the categorical values into integers using the label encoder method.
 
