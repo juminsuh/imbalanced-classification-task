@@ -1,8 +1,8 @@
 # imbalanced-classification-task
 
-This repository contains code for a binary classification task to predict whether a client will subscribe to a bank term deposit based on imbalanced data. The given dataset is highly imbalanced, with the "no" class having 29,238 samples and the "yes" class having 3,712 samples. Due to this imbalance, achieving an F1 score of 0.5 is considered quite satisfactory. Our team applied various methods to handle the imbalanced data, including data preprocessing, feature selection, and Bayesian optimization, ultimately achieving a final performance of 0.5054.
+This repository contains code for a binary classification task to predict whether a client will subscribe to a bank term deposit based on imbalanced data. The given dataset is highly imbalanced, with the "no" class having 29,238 samples and the "yes" class having 3,712 samples. Due to this imbalance, achieving an F1 score of 0.5 is considered quite satisfactory. Our team applied various methods to handle the imbalanced data, including data preprocessing, feature selection, and Bayesian optimization, ultimately **achieving a final performance of 0.5054.** 👍
 
-**1. How are NaN values handled?**
+**✅ How are NaN values handled?**
 
 Upon visualizing each feature, we identified certain features with highly skewed data distributions. For example, the job column showed a distribution heavily concentrated in "admin" and "blue-collar" categories. Therefore, we decided to replace NaN values in the job column proportionally based on the existing distribution. Specifically, for the job column, there were a total of 73 NaN values, which were allocated proportionally to the existing categories. The following dictionary shows how NaN values were distributed: 18 values were assigned to "admin," 2 to "entrepreneur," 1 to "unemployed," and so on. Using this approach, we filled the NaN values in features like job, marital, default, and loan, which exhibited significant distribution biases.
 {
@@ -25,13 +25,16 @@ For features like education and housing that did not exhibit significant distrib
 
 Using a combination of proportional allocation (for skewed distributions) and KNN imputation (for less skewed distributions) resulted in better performance compared to using the KNN imputer alone. The F1 score improved from 0.4892 to 0.5054.
 
-**2. How are features handled?**
+**✅ How are features handled?**
 
 As mentioned earlier, the given data exhibits significant bias within each feature. Therefore, instead of treating each feature as a single entity, we attempted to decompose the categories within each feature into individual features. For example, instead of treating "job" as a single feature, we considered 'admin' as 'job_0', 'blue_collar' as 'job_1', and so on, effectively increasing the number of features. This approach also yielded 0.5019 which was quite good performance, but lower performance compared to simply treating each feature as a single entity 0.5054. Thus, we determined to use each feature as it is, but the idea was worth enough to consider when dealing with the given task. 
 
-**3. How to construct dataset given to the model?**
+**✅ How to construct dataset given to the model?**
+우리 팀은 최종적으로 stepwise method를 이용했지만, 개인적으로 standardizataion과 PCA를 이용했을 때의 성능 역시 검증해 보았다.
+1️⃣ standardization
+- 
 
+2️⃣
 
-
-
+3️⃣
 
