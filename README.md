@@ -6,8 +6,7 @@
 
     Upon visualizing each feature, we identified certain features with highly skewed data distributions. For example, the job column showed a distribution heavily concentrated in "admin" and "blue-collar" categories. Therefore, we decided to replace NaN values in the job column proportionally based on the existing distribution. Specifically, for the job column, there were a total of 73 NaN values, which were allocated proportionally to the existing categories. The following dictionary shows how NaN values were distributed: 18 values were assigned to "admin," 2 to "entrepreneur," 1 to "unemployed," and so on. Using this approach, we filled the NaN values in features like job, marital, default, and loan, which exhibited significant distribution biases.
 
-    
-```python
+```
 {
   "admin": "18.25",
   "entrepreneur": "2.19",
@@ -22,6 +21,7 @@
   "student": "1.46",
   "nan": "0.00"
 }
+```
 
 ![image](https://github.com/user-attachments/assets/864eee47-558a-450a-9efb-bfd742f5dfaa)
   
@@ -40,7 +40,7 @@
     전처리가 끝난 데이터셋에 각 특징별 평균과 표준 편차를 이용해 standardization을 적용했다. 테스트 데이터셋에 대한 f1 score가 0.5042로, 전처리가 성공적으로 이루어졌음을 확인했다. 
 
 **2️⃣ PCA**
-    특징의 개수가 많으므로 PCA (Principal Component Analysis)를 이용해 주요한 특징만을 새롭게 추출해 보고자 했다. 
+    특징의 개수가 많으므로 PCA (Principal Component Analysis)를 이용해 주요한 특징만을 새롭게 추출해 보고자 했다. pca.explained_variance_ratio_
 
 3️⃣
 
