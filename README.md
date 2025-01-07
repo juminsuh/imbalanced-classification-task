@@ -1,6 +1,6 @@
 # imbalanced-classification-task
 
-This repository contains code for a binary classification task to predict whether a client will subscribe to a bank term deposit based on imbalanced data. The given dataset is highly imbalanced, with the "no" class having 29,238 samples and the "yes" class having 3,712 samples. Due to this imbalance, achieving an F1 score of 0.5 is considered quite satisfactory. Our team applied various methods to handle the imbalanced data, including data preprocessing, feature selection, and Bayesian optimization, ultimately achieving a final performance of 0.5054. 👍
+This repository contains code for a binary classification task to predict whether a client will subscribe to a bank term deposit based on imbalanced data. The given dataset is highly imbalanced, with the "no" class having 29,238 samples and the "yes" class having 3,712 samples. Due to this imbalance, achieving an F1 score of 0.5 is considered quite satisfactory. Our team applied various methods to handle the imbalanced data, including data preprocessing, feature selection, and Bayesian optimization, ultimately **achieving a final performance of 0.5054**. 👍
 
 ## **✅ How are NaN values handled?**
 
@@ -24,10 +24,10 @@ Our team ultimately utilized the stepwise method; however, I also personally eva
 
 ### **1️⃣ Standardization**
 
-Using the mean and standard deviation for each feature, standardization was applied to the preprocessed dataset. The F1 score on the test dataset was 0.5042, confirming that preprocessing was successfully performed.
+Using the mean and standard deviation for each feature, standardization was applied to the preprocessed dataset. The F1 score on the test dataset was **0.5042**, confirming that preprocessing was successfully performed.
 
 ### **2️⃣ PCA**
-Since the dataset contained numerous features, we attempted to extract key features using PCA (Principal Component Analysis). Upon reviewing the explained variance of each principal component using `pca.explained_variance_ratio_`, we observed that the first principal component explained approximately 90% of the variance in both the train and test datasets. However, the F1 score improved as the number of principal components increased. Consequently, we set the number of principal components to 18 and trained the model on the PCA-applied dataset. This achieved an F1 score of 0.5048 on the test dataset, demonstrating satisfactory performance.
+Since the dataset contained numerous features, we attempted to extract key features using PCA (Principal Component Analysis). Upon reviewing the explained variance of each principal component using `pca.explained_variance_ratio_`, we observed that the first principal component explained approximately 90% of the variance in both the train and test datasets. However, the F1 score improved as the number of principal components increased. Consequently, we set the number of principal components to 18 and trained the model on the PCA-applied dataset. This achieved an F1 score of **0.5048** on the test dataset, demonstrating satisfactory performance.
 
 ### **3️⃣ Stepwise Method**
 To reduce the number of features by selecting only the most useful ones, we employed the stepwise feature selection method. Stepwise method is a combination of forward selection and backward elimination, adding or removing one feature recursively per each step. It considers all the cases of possible subsets of features and is able to find the best subset of features based on p-values, AIC, and BIC.
@@ -38,11 +38,11 @@ For example, feature ‘age’ is excluded in the optimal subset of features sin
 ```
 ['default', 'nr.employed', 'poutcome', 'previous', 'month', 'euribor3m', 'emp.var.rate', 'contact', 'cons.price.idx', 'cons.conf.idx', 'day_of_week', 'education']
 ```
-The best performance 0.5054 was achieved using this approach.
+The best performance **0.5054** was achieved using this approach.
 
 ## **✅ Which model did we use?**
 
-Our team trained models using two approaches with the Bayesian optimization algorithm: resampling and assigning weights. As a result, resampling achieved the best performance of 0.4315 with PCA, while assigning weights achieved the best performance of 0.5054 with the stepwise method.
+Our team trained models using two approaches with the Bayesian optimization algorithm: resampling and assigning weights. As a result, **resampling achieved the best performance of 0.4315 with PCA**, while **assign weights achieved the best performance of 0.5054 with the stepwise method**.
 
 ### **0️⃣ Bayesian Optimziation**
 
