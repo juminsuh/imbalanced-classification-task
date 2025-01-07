@@ -20,7 +20,7 @@ As mentioned earlier, the given data exhibits significant bias within each featu
 
 ## **✅ How to construct a dataset for the model?**
 
-Our team ultimately utilized the stepwise method; however, I also personally evaluated the performance when using standardization and PCA.
+Our team ultimately utilized the stepwise method; however, I also personally evaluated the performance when using standardization and PCA. (The reported performance of all datasets are evaluted with assign weights.)
 
 ### **1️⃣ Standardization**
 
