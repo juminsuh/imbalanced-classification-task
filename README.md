@@ -6,7 +6,7 @@
 
     Upon visualizing each feature, we identified certain features with highly skewed data distributions. For example, the job column showed a distribution heavily concentrated in "admin" and "blue-collar" categories. Therefore, we decided to replace NaN values in the job column proportionally based on the existing distribution. Specifically, for the job column, there were a total of 73 NaN values, which were allocated proportionally to the existing categories. The following dictionary shows how NaN values were distributed: 18 values were assigned to "admin," 2 to "entrepreneur," 1 to "unemployed," and so on. Using this approach, we filled the NaN values in features like job, marital, default, and loan, which exhibited significant distribution biases.
 
-```
+
 {
   "admin": "18.25",
   "entrepreneur": "2.19",
@@ -21,7 +21,6 @@
   "student": "1.46",
   "nan": "0.00"
 }
-```
 
 ![image](https://github.com/user-attachments/assets/864eee47-558a-450a-9efb-bfd742f5dfaa)
   
@@ -34,13 +33,24 @@
     As mentioned earlier, the given data exhibits significant bias within each feature. Therefore, instead of treating each feature as a single entity, we attempted to decompose the categories within each feature into individual features. For example, instead of treating "job" as a single feature, we considered 'admin' as 'job_0', 'blue_collar' as 'job_1', and so on, effectively increasing the number of features. This approach also yielded 0.5019 which was quite good performance, but lower performance compared to simply treating each feature as a single entity 0.5054. Thus, we determined to use each feature as it is, but the idea was worth enough to consider when dealing with the given task. 
 
 **✅ How to construct dataset given to the model?**
-    우리 팀은 최종적으로 stepwise method를 이용했지만, 개인적으로 standardizataion과 PCA를 이용했을 때의 성능 역시 검증해 보았다.
+
+    Our team ultimately utilized the stepwise method; however, I also personally evaluated the performance when using standardization and PCA.    
     
-**1️⃣ standardization**
-    전처리가 끝난 데이터셋에 각 특징별 평균과 표준 편차를 이용해 standardization을 적용했다. 테스트 데이터셋에 대한 f1 score가 0.5042로, 전처리가 성공적으로 이루어졌음을 확인했다. 
+**1️⃣ Standardization**
 
+    Using the mean and standard deviation for each feature, standardization was applied to the preprocessed dataset. The F1 score on the test dataset was 0.5042, confirming that preprocessing was successfully performed.
+    
 **2️⃣ PCA**
-    특징의 개수가 많으므로 PCA (Principal Component Analysis)를 이용해 주요한 특징만을 새롭게 추출해 보고자 했다. pca.explained_variance_ratio_
 
-3️⃣
+    Since the dataset contained numerous features, we attempted to extract key features using PCA (Principal Component Analysis). Upon reviewing the explained variance of each principal component using pca.explained_variance_ratio_, we observed that the first principal component explained approximately 90% of the variance in both the train and test datasets. However, the F1 score improved as the number of principal components increased. Consequently, we set the number of principal components to 18 and trained the model on the PCA-applied dataset. This achieved an F1 score of 0.5048 on the test dataset, demonstrating satisfactory performance.
+
+**3️⃣ Stepwise Method**
+
+    To reduce the number of features by selecting only the most useful ones, we employed the stepwise feature selection method. Stepwise method is a combination of forward selection and backward elimination, adding or removing one feature recursively per each step. It considers all the cases of possible subsets of features and is able to find the best subset of features based on p-values, AIC, and BIC. Thus, it outperforms the forward selection or backward elimination in general. It uses p-value to determine which is the significant feature for the performance. P-value represents the probability that the coefficient is actually zero. It means that the lower p-value is, the more significant the feature is. Generally, a feature is considered as statistically meaningful if the p-value of a feature is lower than 0.05. For example, feature ‘age’ is excluded in the optimal subset of features since it has higher p-value (0.866) than 0.05. Theses are the features that were selected by stepwise method and we reconstruct train and test dataset consist of only these features. ['default', 'nr.employed', 'poutcome', 'previous', 'month', 'euribor3m', 'emp.var.rate', 'contact', 'cons.price.idx', 'cons.conf.idx', 'day_of_week', 'education']. The best performance 0.5054 was yielded from here. 
+
+**✅ Which model did we use?**
+
+    q
+
+
 
