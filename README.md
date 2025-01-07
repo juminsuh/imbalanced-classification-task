@@ -41,6 +41,25 @@ The best performance 0.5054 was achieved using this approach.
 
 ## **✅ Which model did we use?**
 
-sksms 
+우리 팀은 bayesian optimization 알고리즘으로 resampling과 assigning weights 두 가지 방법의 모델을 훈련시켰다. 결과적으로, resampling은 PCA를 이용했을 때 최고 성능 0.4315를 기록했고 assigning weights는 stepwise method를 이용했을 때 최고 성능 0.5054를 기록했다. 
+
+### **0️⃣ Bayesian Optimziation**
+
+Bayesian optimization이란 머신러닝 태스크에서 하이퍼파라미터를 연속적으로 탐색하여 최적의 하이퍼파라미터를 경험적으로 대입해보기나 gridsearch보다 더 빠르고 쉽게 찾을 수 있는 알고리즘이다. Bayesian optimization은 최대화하고자 하는 대상을 반환값으로 갖는 함수를 정의해준 뒤, BayesianOptimization의 객체를 생성하여 maximize 내장 함수를 이용해 그 반환값을 최대화하는 하이퍼파라미터와 최대의 반환값을 찾는다. Resampling과 assigning weights 모두 bayesian optimization 알고리즘을 이용해 최적화했다. 
+ 
+### **1️⃣ Resampling**
+
+Resampling의 아이디어는 불균형 데이터를 다루기 위해 SMOTE를 이용해 데이터를 oversampling했다. SMOTE는 소수의 클래스의 데이터를 이용해 그 클래스에 속하는 새로운 데이터를 합성함으로써 클래스 불균형 문제를 완화한다. SMOTE를 이용해 생성한 데이터로 모델을 학습시키는데, 이때 여러 번의 resampling을 통해 sampling으로 인해 모델이 학습할 때 기존 데이터의 특성을 잘 반영하지 못 할 수도 있다는 문제를 해결한다. random_state를 각각 다르게 설정함으로써 다르게 sampling된 데이터로 여러 번 모델을 학습시킬 수 있다. 어떤 데이터를 0으로 분류할 지 1로 분류할 지는 tot_prob 값을 이용한다. tot_prob는 여러 번 sampling한 데이터로 각각 모델을 훈련시켰을 때, 각 모델이 생성한 prob들의 평균이다. 정리하자면, resampling은 SMOTE를 이용해 소수 클래스의 데이터 수를 늘리고, 여러 번의 sampling을 통해 생성한 데이터로 여러 모델을 훈련시킨 결과의 평균을 이용함으로써 편향을 줄인 방법이다. 
+
+그러나, 결과는 standardization과 stepwise method를 데이터셋으로 이용했을 때의 성능은 낮았다. 반면 내가 개인적으로 구축한 PCA 데이터셋에서는 아래와 같은 하이퍼파리미터 환경에서 0.4315를 기록했다. 
+```
+model = GradientBoostingClassifier(
+    random_state=42,
+    learning_rate=0.09894,
+    max_depth=int(3.987),
+    n_estimators=100,
+    n_iter_no_change=10
+)
+```
 
 
