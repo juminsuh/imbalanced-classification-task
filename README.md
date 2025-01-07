@@ -27,4 +27,11 @@ Using a combination of proportional allocation (for skewed distributions) and KN
 
 **2. How are features handled?**
 
+As mentioned earlier, the given data exhibits significant bias within each feature. Therefore, instead of treating each feature as a single entity, we attempted to decompose the categories within each feature into individual features. For example, instead of treating "job" as a single feature, we considered 'admin' as 'job_0', 'blue_collar' as 'job_1', and so on, effectively increasing the number of features. This approach also yielded 0.5019 which was quite good performance, but lower performance compared to simply treating each feature as a single entity 0.5054. Thus, we determined to use each feature as it is, but the idea was worth enough to consider when dealing with the given task. 
+
+**3. How to construct dataset given to the model?**
+
+
+
+
 
